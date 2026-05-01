@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花水木 Gathering Flower School</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green-deep:#2d4a2d;
+  --green-mid:#4a7c59;
+  --green-light:#7aad8a;
+  --green-pale:#c8dfc8;
+  --ivory:#faf7f0;
+  --ivory-dark:#f0ebe0;
+  --brown:#8b6f47;
+  --text-dark:#2a2a2a;
+  --text-mid:#5a5a5a;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Serif JP',serif;
+  background:var(--ivory);
+  color:var(--text-dark);
+  line-height:1.8;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  background:rgba(250,247,240,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--green-pale);
+  padding:0 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  height:60px;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;letter-spacing:0.12em;
+  color:var(--green-deep);
+}
+.nav-logo span{font-style:italic;font-weight:300}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-family:'Jost',sans-serif;
+  font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text-mid);text-decoration:none;
+  transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--green-deep)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:80px 2rem 4rem;
+  position:relative;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(122,173,138,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 20% 30%, rgba(200,223,200,0.22) 0%, transparent 65%),
+    var(--ivory);
+  text-align:center;
+  overflow:hidden;
+}
+.hero-deco{
+  position:absolute;
+  font-size:clamp(120px,20vw,260px);
+  opacity:0.045;
+  color:var(--green-deep);
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:-0.04em;
+  pointer-events:none;
+  top:50%;left:50%;
+  transform:translate(-50%,-52%);
+  white-space:nowrap;
+}
+.hero-tag{
+  font-family:'Jost',sans-serif;
+  font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--green-mid);margin-bottom:1.5rem;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:300;line-height:1.15;
+  color:var(--green-deep);
+  margin-bottom:0.5rem;
+}
+.hero-title em{font-style:italic;font-weight:300}
+.hero-subtitle{
+  font-family:'Noto Serif JP',serif;
+  font-size:1.05rem;font-weight:300;
+  color:var(--text-mid);
+  letter-spacing:0.12em;
+  margin-bottom:2.5rem;
+}
+.hero-desc{
+  max-width:480px;
+  font-size:0.92rem;color:var(--text-mid);
+  line-height:2;margin-bottom:3rem;
+}
+.btn-primary{
+  display:inline-block;
+  padding:0.85rem 2.8rem;
+  background:var(--green-deep);
+  color:#fff;
+  font-family:'Jost',sans-serif;
+  font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background 0.3s,transform 0.2s;
+}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-1px)}
+.btn-outline{
+  display:inline-block;
+  padding:0.85rem 2.4rem;
+  border:1px solid var(--green-deep);
+  color:var(--green-deep);
+  font-family:'Jost',sans-serif;
+  font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;margin-left:1rem;
+  transition:all 0.3s;
+}
+.btn-outline:hover{background:var(--green-deep);color:#fff}
+
+/* SECTION COMMON */
+section{padding:6rem 2rem}
+.section-tag{
+  font-family:'Jost',sans-serif;
+  font-size:0.68rem;letter-spacing:0.38em;text-transform:uppercase;
+  color:var(--green-mid);display:block;margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:300;color:var(--green-deep);
+  line-height:1.2;margin-bottom:2.5rem;
+}
+.section-title em{font-style:italic}
+
+/* ABOUT */
+.about{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:1100px;margin:0 auto;
+}
+@media(max-width:768px){
+  .about{grid-template-columns:1fr;gap:2.5rem}
+  .nav-links{gap:1rem}
+}
+.about-text p{
+  font-size:0.95rem;color:var(--text-mid);
+  line-height:2.1;margin-bottom:1.2rem;
+}
+.about-img-placeholder{
+  aspect-ratio:4/5;
+  background:linear-gradient(135deg,var(--green-pale) 0%,var(--ivory-dark) 100%);
+  border:1px solid var(--green-pale);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  color:var(--green-light);
+  gap:0.8rem;
+}
+.about-img-placeholder svg{width:48px;height:48px;opacity:0.6}
+.about-img-placeholder p{font-size:0.78rem;letter-spacing:0.12em;color:var(--green-mid)}
+
+/* NEWS/SCHEDULE */
+.news-item{
+  border-bottom:1px solid var(--green-pale);
+  padding:1.5rem 0;
+  display:grid;grid-template-columns:140px 1fr;gap:1.5rem;
+  align-items:start;
+}
+@media(max-width:600px){.news-item{grid-template-columns:1fr}}
+.news-date{
+  font-family:'Jost',sans-serif;
+  font-size:0.82rem;color:var(--green-mid);letter-spacing:0.08em;
+}
+.news-badge{
+  display:inline-block;
+  padding:0.15rem 0.7rem;
+  background:var(--green-pale);
+  color:var(--green-deep);
+  font-family:'Jost',sans-serif;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:0.4rem;
+}
+.news-title{font-size:0.93rem;color:var(--text-dark);margin-bottom:0.3rem}
+.news-body{font-size:0.85rem;color:var(--text-mid)}
+
+/* GALLERY GRID */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:1.2rem;
+  max-width:1100px;margin:0 auto;
+}
+.gallery-card{
+  aspect-ratio:3/4;
+  background:var(--green-pale);
+  border:1px solid rgba(74,124,89,0.2);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0.5rem;
+  color:var(--green-mid);
+  transition:transform 0.3s;cursor:pointer;
+}
+.gallery-card:hover{transform:translateY(-4px)}
+.gallery-card:nth-child(2n){background:var(--ivory-dark)}
+.gallery-card:nth-child(3n){background:rgba(122,173,138,0.15)}
+.gallery-card svg{width:32px;height:32px;opacity:0.5}
+.gallery-card span{font-size:0.72rem;letter-spacing:0.15em;color:var(--green-mid)}
+
+/* 写真を入れる場合 */
+.gallery-card img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.tab-buttons{
+  display:flex;gap:0;
+  margin-bottom:2.5rem;
+  border-bottom:2px solid var(--green-pale);
+}
+.tab-btn{
+  padding:0.7rem 1.8rem;
+  font-family:'Jost',sans-serif;
+  font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;
+  background:none;border:none;cursor:pointer;
+  color:var(--text-mid);
+  border-bottom:2px solid transparent;
+  margin-bottom:-2px;
+  transition:all 0.3s;
+}
+.tab-btn.active{
+  color:var(--green-deep);
+  border-bottom-color:var(--green-deep);
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* COMMENT SECTION */
+.comment-form{
+  max-width:640px;margin:0 auto 3rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.comment-form input,
+.comment-form textarea{
+  width:100%;
+  padding:0.85rem 1rem;
+  background:var(--ivory);
+  border:1px solid var(--green-pale);
+  font-family:'Noto Serif JP',serif;
+  font-size:0.9rem;color:var(--text-dark);
+  outline:none;
+  transition:border-color 0.3s;
+}
+.comment-form input:focus,
+.comment-form textarea:focus{border-color:var(--green-mid)}
+.comment-form textarea{height:120px;resize:vertical}
+.comment-form button{
+  align-self:flex-start;
+  padding:0.75rem 2rem;
+  background:var(--green-deep);color:#fff;
+  border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;
+  font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;
+  transition:background 0.3s;
+}
+.comment-form button:hover{background:var(--green-mid)}
+
+.comments-list{max-width:640px;margin:0 auto}
+.comment-item{
+  border-bottom:1px solid var(--green-pale);
+  padding:1.5rem 0;
+}
+.comment-meta{
+  display:flex;align-items:center;gap:1rem;margin-bottom:0.6rem;
+}
+.comment-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--green-pale);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;color:var(--green-deep);
+  flex-shrink:0;
+}
+.comment-name{font-size:0.9rem;font-weight:400;color:var(--green-deep)}
+.comment-date{font-size:0.78rem;color:var(--text-mid);font-family:'Jost',sans-serif}
+.comment-text{font-size:0.88rem;color:var(--text-mid);line-height:1.9}
+
+/* FOOTER */
+footer{
+  background:var(--green-deep);
+  color:rgba(255,255,255,0.7);
+  padding:3rem 2rem;
+  text-align:center;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:300;
+  color:#fff;letter-spacing:0.15em;
+  margin-bottom:0.5rem;
+}
+.footer-sub{
+  font-size:0.78rem;letter-spacing:0.2em;
+  font-family:'Jost',sans-serif;
+  margin-bottom:1.5rem;
+  color:rgba(255,255,255,0.5);
+}
+.footer-links{
+  display:flex;justify-content:center;gap:2rem;
+  list-style:none;margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  color:rgba(255,255,255,0.6);text-decoration:none;
+  font-family:'Jost',sans-serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;
+  transition:color 0.3s;
+}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.35);font-family:'Jost',sans-serif}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-tag{animation:fadeUp 0.8s ease both}
+.hero-title{animation:fadeUp 0.8s 0.15s ease both}
+.hero-subtitle{animation:fadeUp 0.8s 0.28s ease both}
+.hero-desc{animation:fadeUp 0.8s 0.4s ease both}
+.hero-btns{animation:fadeUp 0.8s 0.52s ease both}
+</style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+  <div class="nav-logo"><span>花水木</span> Hanamizuki</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#comments">Comments</a></li>
+  </ul>
+</nav>
+
+<!-- ヒーロー -->
+<section class="hero" id="top">
+  <div class="hero-deco">花水木</div>
+  <p class="hero-tag">Gathering Flower School</p>
+  <h1 class="hero-title"><em>花水木</em></h1>
+  <p class="hero-subtitle">ギャザリング・フラワーアレンジメント教室</p>
+  <p class="hero-desc">
+    花の根を残したまま、生きた植物と向き合う――。<br>
+    ギャザリングは、花本来の姿を大切にしながら<br>
+    美しく束ねる日本発のフラワーアレンジメントです。
+  </p>
+  <div class="hero-btns">
+    <a href="#schedule" class="btn-primary">教室を見る</a>
+    <a href="#gallery" class="btn-outline">作品集</a>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" style="padding:6rem 2rem;background:var(--ivory-dark)">
+  <div class="about">
+    <div class="about-text">
+      <span class="section-tag">About MICHIKO</span>
+      <h2 class="section-title">花と根っこを<br><em>ひとつに。</em></h2>
+      <p>はじめまして、MICHIKOです。花水木では「ギャザリング」という手法で、切り花ではなく根付きのまま花を扱うフラワーアレンジメントを学んでいただけます。</p>
+      <p>根ごと包む独特の技法は、花の鮮度が長持ちし、仕立て直しもできる魅力があります。初めての方から経験者まで、どなたでも歓迎いたします。</p>
+      <p>少人数制で丁寧に、季節の花と向き合う時間をご一緒しましょう。</p>
+    </div>
+    <!-- ★ 先生の写真をここに入れる場合は下のimgタグのコメントを外してください -->
+    <div class="about-img-placeholder">
+      <!-- <img src="images/michiko.jpg" alt="MICHIKO" style="width:100%;height:100%;object-fit:cover"> -->
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="24" cy="16" r="8"/>
+        <path d="M12 42c0-6.627 5.373-12 12-12s12 5.373 12 12"/>
+        <path d="M24 24v6M20 28l4 2 4-2"/>
+      </svg>
+      <p>先生のお写真</p>
+    </div>
+  </div>
+</section>
+
+<!-- スケジュール -->
+<section id="schedule" style="padding:6rem 2rem">
+  <div style="max-width:800px;margin:0 auto">
+    <span class="section-tag">Schedule &amp; Info</span>
+    <h2 class="section-title">教室のご案内</h2>
+
+    <div class="news-item">
+      <div>
+        <div class="news-date">2025.06.08 Sun</div>
+        <div class="news-badge">定期レッスン</div>
+      </div>
+      <div>
+        <p class="news-title">6月・初夏のギャザリング</p>
+        <p class="news-body">アジサイと夏草を使ったナチュラルブーケ。根処理から束ね方まで丁寧に指導します。定員6名、残席3名。</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div>
+        <div class="news-date">2025.06.22 Sun</div>
+        <div class="news-badge">体験レッスン</div>
+      </div>
+      <div>
+        <p class="news-title">はじめてのギャザリング体験</p>
+        <p class="news-body">道具不要、手ぶらでご参加いただけます。季節の花材3〜5種でミニギャザードブーケをお作りいただきます。定員4名。</p>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div>
+        <div class="news-date">2025.07.06 Sun</div>
+        <div class="news-badge">特別レッスン</div>
+      </div>
+      <div>
+        <p class="news-title">夏のハンギングバスケット</p>
+        <p class="news-body">吊り下げ式のギャザードアレンジ。玄関やベランダを彩る夏仕様の作品に仕立てます。</p>
+      </div>
+    </div>
+
+    <!-- ★ 教室情報ボックス（住所・料金・連絡先を書き換えてください） -->
+    <div style="margin-top:2.5rem;padding:1.5rem;background:var(--ivory-dark);border-left:3px solid var(--green-mid)">
+      <p style="font-size:0.88rem;color:var(--text-mid);line-height:2.2">
+        📍 場所：（教室の住所を入力）<br>
+        🕐 時間：10:00〜12:30 ／ 14:00〜16:30<br>
+        💴 料金：体験 ¥3,800 ／ 定期 ¥5,500〜<br>
+        📩 お申し込み：（メールアドレスまたはLINEなど）
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ギャラリー -->
+<section id="gallery" style="padding:6rem 2rem;background:var(--ivory-dark)">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-tag">Gallery</span>
+    <h2 class="section-title"><em>作品・記録</em></h2>
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="switchTab('album')">授業アルバム</button>
+      <button class="tab-btn" onclick="switchTab('students')">生徒作品集</button>
+      <button class="tab-btn" onclick="switchTab('teacher')">先生作品集</button>
+    </div>
+
+    <!-- 授業アルバム -->
+    <div id="tab-album" class="tab-content active">
+      <div class="gallery-grid">
+        <!-- ★ 写真を入れる場合：<img src="images/album1.jpg" alt="授業シーン"> に差し替えてください -->
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="26" height="20" rx="2"/><circle cx="21" cy="13" r="3"/><path d="M3 22l7-6 5 4 5-5 7 7"/></svg>
+          <span>授業シーン</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 生徒作品集 -->
+    <div id="tab-students" class="tab-content">
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4C10 4 6 10 6 16s4 12 10 12 10-6 10-12S22 4 16 4z"/><path d="M16 10v6l4 2"/></svg>
+          <span>生徒作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4C10 4 6 10 6 16s4 12 10 12 10-6 10-12S22 4 16 4z"/><path d="M16 10v6l4 2"/></svg>
+          <span>生徒作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4C10 4 6 10 6 16s4 12 10 12 10-6 10-12S22 4 16 4z"/><path d="M16 10v6l4 2"/></svg>
+          <span>生徒作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 4C10 4 6 10 6 16s4 12 10 12 10-6 10-12S22 4 16 4z"/><path d="M16 10v6l4 2"/></svg>
+          <span>生徒作品</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 先生作品集 -->
+    <div id="tab-teacher" class="tab-content">
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 28c0-8 4-12 8-14 4 2 8 6 8 14"/><circle cx="16" cy="8" r="4"/></svg>
+          <span>MICHIKO作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 28c0-8 4-12 8-14 4 2 8 6 8 14"/><circle cx="16" cy="8" r="4"/></svg>
+          <span>MICHIKO作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 28c0-8 4-12 8-14 4 2 8 6 8 14"/><circle cx="16" cy="8" r="4"/></svg>
+          <span>MICHIKO作品</span>
+        </div>
+        <div class="gallery-card">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 28c0-8 4-12 8-14 4 2 8 6 8 14"/><circle cx="16" cy="8" r="4"/></svg>
+          <span>MICHIKO作品</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- コメント欄 -->
+<section id="comments" style="padding:6rem 2rem;background:var(--ivory)">
+  <div style="max-width:640px;margin:0 auto">
+    <span class="section-tag">Comments</span>
+    <h2 class="section-title">コメント</h2>
+
+    <div class="comment-form">
+      <input type="text" placeholder="お名前（ニックネームでも可）" id="c-name">
+      <textarea placeholder="メッセージをどうぞ..." id="c-text"></textarea>
+      <button onclick="postComment()">コメントを投稿する</button>
+    </div>
+
+    <div class="comments-list" id="comments-list">
+      <div class="comment-item">
+        <div class="comment-meta">
+          <div class="comment-avatar">K</div>
+          <div>
+            <div class="comment-name">Kanako</div>
+            <div class="comment-date">2025.05.18</div>
+          </div>
+        </div>
+        <p class="comment-text">初めて参加しましたが、MICHIKOさんの丁寧な指導でとても楽しく仕上がりました。根っこごと束ねる感覚が新鮮で、また参加したいです！</p>
+      </div>
+      <div class="comment-item">
+        <div class="comment-meta">
+          <div class="comment-avatar">Y</div>
+          <div>
+            <div class="comment-name">Yuko</div>
+            <div class="comment-date">2025.04.30</div>
+          </div>
+        </div>
+        <p class="comment-text">毎月通っています。季節の花材が変わるたびに新しい発見があります。今月のスズランのアレンジがとくにお気に入りです♪</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo">花水木</div>
+  <div class="footer-sub">Hanamizuki Gathering Flower School</div>
+  <ul class="footer-links">
+    <li><a href="#top">Top</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#comments">Comments</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 花水木 / MICHIKO. All rights reserved.</p>
+</footer>
+
+<script>
+function switchTab(name) {
+  var names = ['album', 'students', 'teacher'];
+  document.querySelectorAll('.tab-btn').forEach(function(b, i) {
+    b.classList.toggle('active', names[i] === name);
+  });
+  document.querySelectorAll('.tab-content').forEach(function(c) {
+    c.classList.toggle('active', c.id === 'tab-' + name);
+  });
+}
+
+function postComment() {
+  var name = document.getElementById('c-name').value.trim();
+  var text = document.getElementById('c-text').value.trim();
+  if (!name || !text) return;
+  var today = new Date();
+  var d = today.getFullYear() + '.' +
+    String(today.getMonth() + 1).padStart(2, '0') + '.' +
+    String(today.getDate()).padStart(2, '0');
+  var item = document.createElement('div');
+  item.className = 'comment-item';
+  item.style.animation = 'fadeUp 0.5s ease both';
+  item.innerHTML =
+    '<div class="comment-meta">' +
+    '<div class="comment-avatar">' + name[0].toUpperCase() + '</div>' +
+    '<div><div class="comment-name">' + name + '</div>' +
+    '<div class="comment-date">' + d + '</div></div></div>' +
+    '<p class="comment-text">' + text + '</p>';
+  document.getElementById('comments-list').prepend(item);
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-text').value = '';
+}
+</script>
+
+</body>
+</html>
